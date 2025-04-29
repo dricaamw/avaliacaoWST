@@ -105,7 +105,7 @@ export default function HomePage() {
         <table className="table">
           <thead>
             <tr>
-              <th className="header-cell coluna-habilidade">HABILIDADES</th>
+              <th className="header-cell habilidade coluna-habilidade">HABILIDADES</th>
               {pacientes.map((paciente, pacienteIndex) => (
                 <th key={pacienteIndex} className="coluna-paciente">
                   <div className="input-group">

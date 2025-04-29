@@ -24,6 +24,13 @@
   border: 1px solid black;
 }
 
+.header-cell.habilidade {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background-color: #bfdbfe;
+}
+
 .header-cell {
   border: 1px solid #ccc;
   font-size: 1.125rem;
@@ -73,6 +80,9 @@
   font-weight: 600;
   font-size: 1.125rem;
   background-color: #d1d5db;
+  position: sticky;
+  left: 0;
+  z-index: 2;
 }
 
 .select-cell {
