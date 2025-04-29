@@ -74,6 +74,17 @@
   width: 318px;
 }
 
+.sticky-cell {
+  position: sticky;
+  left: 0;
+  background-color: #d1d5db; /* mesma cor da skill-cell */
+  z-index: 1;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+
+
 .skill-cell {
   border: 1px solid black;
   padding: 0.5rem;

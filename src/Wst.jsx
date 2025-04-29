@@ -168,7 +168,7 @@ export default function HomePage() {
             ))}
 
             <tr>
-              <td className="score-cell">Pontuação Domiciliar</td>
+              <td className="score-cell sticky-cell">Pontuação Domiciliar</td>
               {pacientes.map((paciente, pacienteIndex) => (
                 <td key={pacienteIndex} className="score-cell">
                   {calcularPontuacao(paciente.habilidadeNotas, 0, 11)}%
@@ -177,7 +177,7 @@ export default function HomePage() {
             </tr>
 
             <tr>
-              <td className="score-cell">Pontuação Comunitário</td>
+              <td className="score-cell sticky-cell">Pontuação Comunitário</td>
               {pacientes.map((paciente, pacienteIndex) => (
                 <td key={pacienteIndex} className="score-cell">
                   {calcularPontuacao(paciente.habilidadeNotas, 0, 21)}%
@@ -186,7 +186,7 @@ export default function HomePage() {
             </tr>
 
             <tr>
-              <td className="score-cell">Pontuação Avançado</td>
+              <td className="score-cell sticky-cell">Pontuação Avançado</td>
               {pacientes.map((paciente, pacienteIndex) => (
                 <td key={pacienteIndex} className="score-cell">
                   {calcularPontuacao(paciente.habilidadeNotas, 0, 30)}%
@@ -195,7 +195,7 @@ export default function HomePage() {
             </tr>
 
             <tr>
-              <td className="report-cell">Relatório</td>
+              <td className="report-cell sticky-cell">Relatório</td>
               {pacientes.map((paciente, pacienteIndex) => (
                 <td key={pacienteIndex} className="report-cell">
                   <button
