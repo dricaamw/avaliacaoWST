@@ -1,3 +1,178 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.container {
+  font-family: sans-serif;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  min-width: 600px; /* força a tabela a não encolher demais */
+  border: 1px solid black;
+}
+
+.header-cell {
+  border: 1px solid #ccc;
+  font-size: 1.125rem;
+  background-color: #bfdbfe;
+  padding: 0.5rem;
+}
+
+.table thead th {
+  background-color: #bfdbfe;
+  border: 1px solid black;
+  padding: 0.5rem;
+}
+
+.coluna-paciente {
+  width: 200px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  width: 90%;
+  background-color: #e3e4e6;
+  text-transform: uppercase;
+}
+
+.input:focus {
+  background-color: #fff;
+  outline: none;
+}
+
+.coluna-habilidade {
+  width: 318px;
+}
+
+.skill-cell {
+  border: 1px solid black;
+  padding: 0.5rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  background-color: #d1d5db;
+}
+
+.select-cell {
+  border: 1px solid black;
+}
+
+.select {
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  width: 80%;
+  margin: 0 auto; /* centraliza horizontalmente */
+  display: block; /* necessário para que o margin funcione corretamente */
+}
+
+.score-cell {
+  border: 1px solid black;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: #fde68a;
+}
+
+.report-cell {
+  border: 1px solid black;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: bold;  
+}
+
+.report-button {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  width: 90%;
+  border: none;
+  cursor: pointer;
+}
+
+.report-button.admissao {
+  background-color: #3b82f6;
+}
+
+.report-button.admissao:hover {
+  background-color: #2563eb;
+}
+
+.report-button.alta {
+  background-color: #22c55e;
+}
+
+.report-button.alta:hover {
+  background-color: #16a34a;
+}
+
+.input,
+.select {
+  width: 90%;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .input,
+  .select {
+    font-size: 0.75rem;
+    padding: 0.4rem;
+  }
+
+  .coluna-habilidade {
+    width: 170px;
+    font-size: 0.9rem;
+  }
+
+  .skill-cell {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  .coluna-paciente {
+    width: 90px;
+  }
+
+  .score-cell {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  .report-cell {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  .report-button {
+    font-size: 0.9rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    margin-top: 0.4rem;
+  }
+}
