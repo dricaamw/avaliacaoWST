@@ -1,13 +1,11 @@
-import Wst from './Wst.jsx'
+import Wst from "./Wst.jsx";
 
 function App() {
-  
-
   return (
     <>
       <Wst />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
