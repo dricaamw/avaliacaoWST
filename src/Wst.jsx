@@ -86,7 +86,11 @@ export default function HomePage() {
 
       doc.setData(templateData);
       doc.render();
-      const blob = doc.getZip().generate({ type: "blob" });
+      const blob = doc.getZip().generate({
+        type: "blob",
+        mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      });
+      
       saveAs(blob, `Relatorio_${paciente.prontuario}_${tipo}.docx`);
     } catch (error) {
       console.error("Erro ao gerar o relatório:", error);
