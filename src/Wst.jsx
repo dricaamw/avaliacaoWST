@@ -1,19 +1,25 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import PizZip from "pizzip";
 import Docxtemplater from "docxtemplater";
 import { saveAs } from "file-saver";
 import { habilidades, notas } from "./components/constants";
 
 export default function HomePage() {
-  const [pacientes, setPacientes] = useState(
-    Array(5)
+  const [pacientes, setPacientes] = useState(() => {
+    const dadosSalvos = localStorage.getItem("pacientes");
+    if (dadosSalvos) return JSON.parse(dadosSalvos);
+    return Array(5)
       .fill()
       .map(() => ({
         nome: "",
         prontuario: "",
         habilidadeNotas: Array(habilidades.length).fill("0"),
-      }))
-  );
+      }));
+  });
+  
+useEffect(() => {
+  localStorage.setItem("pacientes", JSON.stringify(pacientes));
+}, [pacientes]);
 
   const atualizarPaciente = useCallback(
     (pacienteIndex, campo, valor) => {
@@ -52,6 +58,56 @@ export default function HomePage() {
     return ((somaNotas / totalPossivel) * 100).toFixed(2);
   };
 
+  // const gerarRelatorio = useCallback(async (paciente, tipo = "admissao") => {
+  //   if (!paciente.nome || !paciente.prontuario) {
+  //     alert("Nome e prontuário do paciente são obrigatórios.");
+  //     return;
+  //   }
+  //   try {
+  //     const modeloUrl =
+  //       tipo === "alta" ? "/modelo_alta.docx" : "/modelo_admissao.docx";
+  //     const response = await fetch(modeloUrl);
+  //     if (!response.ok)
+  //       throw new Error("Erro ao carregar o modelo do relatório");
+  //     const arrayBuffer = await response.arrayBuffer();
+  //     const zip = new PizZip(arrayBuffer);
+  //     const doc = new Docxtemplater(zip, {
+  //       paragraphLoop: true,
+  //       linebreaks: true,
+  //     });
+
+  //     const templateData = {
+  //       paciente: paciente.prontuario,
+  //       escore_domiciliar: calcularPontuacao(paciente.habilidadeNotas, 0, 11),
+  //       escore_comunitario: calcularPontuacao(paciente.habilidadeNotas, 0, 21),
+  //       escore_avancado: calcularPontuacao(paciente.habilidadeNotas, 0, 30),
+  //       ...paciente.habilidadeNotas.reduce(
+  //         (acc, nota, index) => ({
+  //           ...acc,
+  //           [`habilidade_${index + 1}`]: nota,
+  //         }),
+  //         {}
+  //       ),
+  //     };
+
+  //     doc.setData(templateData);
+  //     doc.render();
+  //     const blob = doc.getZip().generate({
+  //       type: "blob",
+  //       mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  //     });
+      
+  //     saveAs(blob, `Relatorio_${paciente.prontuario}_${tipo}.docx`);
+  //   } catch (error) {
+  //     console.error("Erro ao gerar o relatório:", error);
+  //     alert(
+  //       error.message.includes("fetch")
+  //         ? "Não foi possível carregar o modelo do relatório."
+  //         : "Erro ao gerar o relatório. Tente novamente."
+  //     );
+  //   }
+  // }, []);
+
   const gerarRelatorio = useCallback(async (paciente, tipo = "admissao") => {
     if (!paciente.nome || !paciente.prontuario) {
       alert("Nome e prontuário do paciente são obrigatórios.");
@@ -69,7 +125,7 @@ export default function HomePage() {
         paragraphLoop: true,
         linebreaks: true,
       });
-
+  
       const templateData = {
         paciente: paciente.prontuario,
         escore_domiciliar: calcularPontuacao(paciente.habilidadeNotas, 0, 11),
@@ -83,15 +139,29 @@ export default function HomePage() {
           {}
         ),
       };
-
+  
       doc.setData(templateData);
       doc.render();
       const blob = doc.getZip().generate({
         type: "blob",
-        mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        mimeType:
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       });
-      
+  
       saveAs(blob, `Relatorio_${paciente.prontuario}_${tipo}.docx`);
+  
+      setPacientes((prevPacientes) => {
+        const novos = [...prevPacientes];
+        novos[prevPacientes.indexOf(paciente)] = {
+          nome: "",
+          prontuario: "",
+          habilidadeNotas: Array(habilidades.length).fill("0"),
+        };
+        return novos;
+      });
+
+      localStorage.removeItem("pacientes");
+
     } catch (error) {
       console.error("Erro ao gerar o relatório:", error);
       alert(
@@ -101,6 +171,7 @@ export default function HomePage() {
       );
     }
   }, []);
+  
 
   return (
     <div className="container">
