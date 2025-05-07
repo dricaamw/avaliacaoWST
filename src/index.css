@@ -12,8 +12,10 @@
 }
 
 .table-container {
-  max-width: 100%;
+  max-height: 80vh; /* define altura máxima visível */
+  overflow-y: auto; /* ativa rolagem vertical */
   overflow-x: auto;
+  border: 1px solid rgba(0, 0, 0, 0.231);
 }
 
 .table {
@@ -21,7 +23,7 @@
   table-layout: fixed;
   border-collapse: collapse;
   min-width: 600px; /* força a tabela a não encolher demais */
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.231);
 }
 
 .header-cell.habilidade {
@@ -40,8 +42,11 @@
 
 .table thead th {
   background-color: #bfdbfe;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.231);
   padding: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .coluna-paciente {
@@ -86,7 +91,7 @@
 
 
 .skill-cell {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.233);
   padding: 0.5rem;
   font-weight: 600;
   font-size: 1.125rem;
@@ -97,7 +102,7 @@
 }
 
 .select-cell {
-  border: 1px solid black;
+  border: 1px solid #ccc;
 }
 
 .select {
@@ -110,7 +115,7 @@
 }
 
 .score-cell {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.231);
   padding: 0.5rem;
   text-align: center;
   font-weight: bold;
@@ -119,7 +124,7 @@
 }
 
 .report-cell {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.231);
   padding: 0.5rem;
   text-align: center;
   font-weight: bold;  
