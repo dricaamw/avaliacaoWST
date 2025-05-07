@@ -5,14 +5,14 @@
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  padding: 0.5rem;
+  /* padding: 0.1rem; */
   text-align: center;
 }
 
 .table-container {
-  max-height: 80vh; /* define altura máxima visível */
+  max-height: 100vh; /* define altura máxima visível */
   overflow-y: auto; /* ativa rolagem vertical */
   overflow-x: auto;
   border: 1px solid rgba(0, 0, 0, 0.231);
